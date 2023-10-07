@@ -47,6 +47,7 @@ object CountryListMaker {
         stringList.forEach {
             list.add(context.getString(it))
         }
+        list.sortBy { it.firstOrNull() }
 
         return list
     }
