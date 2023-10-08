@@ -6,23 +6,35 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import kz.just_code.recyclerview.databinding.ItemCountryBinding
 import kz.just_code.recyclerview.databinding.ItemRegisonBinding
+import kz.just_code.recyclerview.databinding.ItemSpacingBinding
 
 class CountryListAdapter(
     private val items: List<CountryListDto>
 ) : RecyclerView.Adapter<BaseCountryViewHolder<*, String>>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseCountryViewHolder<*, String> {
-        return if (viewType == CountryListType.REGION_VIEW.ordinal) {
-            RegionViewHolder(
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): BaseCountryViewHolder<*, String> {
+        return when (viewType) {
+            CountryListType.REGION_VIEW.ordinal -> HeaderViewHolder(
                 ItemRegisonBinding.inflate(
                     LayoutInflater.from(parent.context), parent, false
                 )
             )
-        } else CountryViewHolder(
-            ItemCountryBinding.inflate(
-                LayoutInflater.from(parent.context), parent, false
+
+            CountryListType.COUNTRY_VIEW.ordinal -> CountryViewHolder(
+                ItemCountryBinding.inflate(
+                    LayoutInflater.from(parent.context), parent, false
+                )
             )
-        )
+
+            else -> SpacingViewHolder(
+                ItemSpacingBinding.inflate(
+                    LayoutInflater.from(parent.context), parent, false
+                ), 16
+            )
+        }
     }
 
     override fun getItemCount(): Int = items.size
@@ -43,7 +55,7 @@ class CountryListAdapter(
         }
     }
 
-    class RegionViewHolder(override val binding: ItemRegisonBinding) :
+    class HeaderViewHolder(override val binding: ItemRegisonBinding) :
         BaseCountryViewHolder<ItemRegisonBinding, String>(binding) {
 
         override fun bindView(item: String) {
@@ -56,13 +68,13 @@ class CountryListAdapter(
     }
 }
 
-abstract class BaseCountryViewHolder<VB: ViewBinding, T>(protected open val binding: VB):
+abstract class BaseCountryViewHolder<VB : ViewBinding, T>(protected open val binding: VB) :
     RecyclerView.ViewHolder(binding.root) {
-        abstract fun bindView(item: T)
-    }
+    abstract fun bindView(item: T)
+}
 
 enum class CountryListType {
-    REGION_VIEW, COUNTRY_VIEW
+    REGION_VIEW, COUNTRY_VIEW, SPACING_VIEW
 }
 
 data class CountryListDto(

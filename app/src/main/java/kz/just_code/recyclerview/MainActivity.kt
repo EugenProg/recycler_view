@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import kz.just_code.recyclerview.databinding.ActivityMainBinding
+import kz.just_code.recyclerview.decoration.HeaderDecoration
 import kz.just_code.recyclerview.decoration.OffsetDecoration
 
 class MainActivity : AppCompatActivity() {
@@ -16,12 +17,12 @@ class MainActivity : AppCompatActivity() {
 
 
         val adapter = CountryListAdapter(getTransformedList())
-        val offsetDecoration = OffsetDecoration(start = 16, top = 2, end = 16, bottom = 2)
+        val offsetDecoration = OffsetDecoration(start = 16, top = 0, end = 16, bottom = 4)
 
         binding.listView.adapter = adapter
         binding.listView.addItemDecoration(offsetDecoration)
-        binding.listView.layoutManager =
-            LinearLayoutManager(this)
+        binding.listView.addItemDecoration(HeaderDecoration())
+        binding.listView.layoutManager = LinearLayoutManager(this)
     }
 
     private fun getTransformedList(): List<CountryListDto> {
@@ -36,6 +37,7 @@ class MainActivity : AppCompatActivity() {
             }
             list.add(CountryListDto(CountryListType.COUNTRY_VIEW, item))
         }
+        list.add(CountryListDto(CountryListType.SPACING_VIEW, ""))
 
         return list
     }
