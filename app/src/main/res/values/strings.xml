@@ -249,4 +249,11 @@
     <string name="SS">South Sudan</string>
     <string name="JM">Jamaica</string>
     <string name="JP">Japan</string>
+
+    <string name="eurasia">Евразия</string>
+    <string name="africa">Африка</string>
+    <string name="south_america">Южная америка</string>
+    <string name="north_america">Северная америка</string>
+    <string name="australia">Австралия</string>
+    <string name="antarctica">Антарктида</string>
 </resources>

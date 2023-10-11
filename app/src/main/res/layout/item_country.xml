@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="80dp"
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="16dp"
     app:cardElevation="2dp">
@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:paddingHorizontal="16dp"
+        android:layout_gravity="center"
         android:paddingVertical="8dp"
         android:textColor="@color/black"
         android:textSize="18sp"
